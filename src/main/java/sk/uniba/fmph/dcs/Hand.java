@@ -3,7 +3,6 @@ package sk.uniba.fmph.dcs;
 import java.util.ArrayList;
 
 public class Hand {
-
     public ArrayList<CardInterface> handCards;
     private Deck deck;
 
@@ -16,8 +15,12 @@ public class Hand {
         return getCardFromHand(idx) != null && getCardFromHand(idx).cardType().isAction();
     }
 
+    public boolean isTreasureCard(int idx) {
+        return getCardFromHand(idx) != null && getCardFromHand(idx).cardType().isTreasure();
+    }
+
     public boolean play(int idx) {
-        if (isActionCard(idx) && getCardFromHand(idx) != null) {
+        if ((isActionCard(idx) || isTreasureCard(idx)) && getCardFromHand(idx) != null) {
             handCards.remove(getCardFromHand(idx));
             return true;
         }
@@ -29,6 +32,14 @@ public class Hand {
             return null;
         }
         return handCards.get(idx);
+    }
+
+    public int getPoints() {
+        int points = 0;
+        for(CardInterface card: handCards) {
+            points += card.cardType().getPoints();
+        }
+        return points;
     }
 
     public ArrayList<CardInterface> throwToDiscardPile() {
