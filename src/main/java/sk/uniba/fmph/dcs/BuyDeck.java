@@ -13,6 +13,10 @@ public class BuyDeck {
         cardCount--;
     }
 
+    public int getCardCount(){
+        return cardCount;
+    }
+
     public CardInterface getCardFromBuyDeck() {
         return new GameCard(deckTypeCard);
     }
