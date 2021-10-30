@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class OutOfEstates implements EndGameStrategy {
-
     private final ArrayList<BuyDeck> buyDecks;
 
     public OutOfEstates(ArrayList<BuyDeck> buyDecks) {
