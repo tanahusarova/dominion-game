@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class DiscardPile {
-    List<CardInterface> cards;
+    private List<CardInterface> cards;
 
     public DiscardPile(List<CardInterface> _cards) {
         cards = _cards;
@@ -14,11 +14,15 @@ public class DiscardPile {
 
     public Optional<CardInterface> getTopCard() {
         if (cards.isEmpty()) return Optional.empty();
-        return Optional.of(cards.get(cards.size()-1));
+        return Optional.of(cards.get(cards.size() - 1));
     }
 
     public void addCards(List<CardInterface> _cards) {
         cards.addAll(_cards);
+    }
+
+    public void addCard(CardInterface card) {
+        cards.add(card);
     }
 
     public int getSize() {
@@ -28,7 +32,15 @@ public class DiscardPile {
     public List<CardInterface> shuffle() {
         Collections.shuffle(cards);
         List<CardInterface> cards_to_send = cards;
-        cards = new ArrayList<CardInterface>();
+        cards = new ArrayList<>();
         return cards_to_send;
+    }
+
+    public int getPoints() {
+        int points = 0;
+        for (CardInterface card : cards) {
+            points += card.cardType().getPoints();
+        }
+        return points;
     }
 }
