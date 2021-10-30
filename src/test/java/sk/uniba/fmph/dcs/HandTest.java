@@ -1,8 +1,8 @@
 package sk.uniba.fmph.dcs;
 
-import java.util.ArrayList;
-
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -75,7 +75,7 @@ public class HandTest {
     }
 
     @Test
-    public void test_get_points(){
+    public void test_get_points() {
         setUp();
         assertEquals(2, hand.getPoints());
     }

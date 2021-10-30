@@ -1,7 +1,7 @@
 package sk.uniba.fmph.dcs;
 
 public class FakeCard implements CardInterface {
-    private GameCardType _cardType;
+    private final GameCardType _cardType;
 
     FakeCard(GameCardType __cardType) {
         _cardType = __cardType;

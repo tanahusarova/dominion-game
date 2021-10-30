@@ -1,9 +1,9 @@
 package sk.uniba.fmph.dcs;
 
-import java.util.Optional;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 public class DiscardPile {
     private List<CardInterface> cards;

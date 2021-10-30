@@ -13,7 +13,7 @@ public class BuyDeck {
         cardCount--;
     }
 
-    public int getCardCount(){
+    public int getCardCount() {
         return cardCount;
     }
 

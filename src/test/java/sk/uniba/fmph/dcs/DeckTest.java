@@ -4,7 +4,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class DeckTest {
     private Deck deck;
@@ -44,13 +45,13 @@ public class DeckTest {
     }
 
     @Test
-    public void test_get_points(){
+    public void test_get_points() {
         setUp();
         assertEquals(1, deck.getPoints());
     }
 
     @Test
-    public void test_deck_size(){
+    public void test_deck_size() {
         setUp();
         assertEquals(5, deck.deckSize());
     }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Hand {
     public ArrayList<CardInterface> handCards;
-    private Deck deck;
+    private final Deck deck;
 
     public Hand(Deck deck) {
         this.deck = deck;
@@ -36,7 +36,7 @@ public class Hand {
 
     public int getPoints() {
         int points = 0;
-        for(CardInterface card: handCards) {
+        for (CardInterface card : handCards) {
             points += card.cardType().getPoints();
         }
         return points;

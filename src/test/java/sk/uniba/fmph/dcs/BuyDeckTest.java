@@ -2,12 +2,12 @@ package sk.uniba.fmph.dcs;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class BuyDeckTest {
-    private BuyDeck buyDeck;
     public int cardCount;
     public GameCardType deckTypeCard;
+    private BuyDeck buyDeck;
 
     public void setUp() {
         cardCount = 5;

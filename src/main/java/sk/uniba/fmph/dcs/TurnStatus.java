@@ -4,6 +4,7 @@ public class TurnStatus {
     public int actions;
     public int buys;
     public int coins;
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -13,6 +14,7 @@ public class TurnStatus {
         result = prime * result + coins;
         return result;
     }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -26,8 +28,6 @@ public class TurnStatus {
             return false;
         if (buys != other.buys)
             return false;
-        if (coins != other.coins)
-            return false;
-        return true;
+        return coins == other.coins;
     }
 }

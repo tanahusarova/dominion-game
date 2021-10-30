@@ -31,7 +31,7 @@ public class Deck {
 
     public int getPoints() {
         int points = 0;
-        for(CardInterface card: deckCards) {
+        for (CardInterface card : deckCards) {
             points += card.cardType().getPoints();
         }
         return points;
