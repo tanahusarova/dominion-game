@@ -32,14 +32,20 @@ public class Turn {
             baseCards.add(gameCard);
         }
         discardPile = new DiscardPile(new ArrayList<>());
+        Collections.shuffle(baseCards); //len nech ich nemas presne v tom poradi, zda sa mi ze si to potom v decku nemiesala
         deck = new Deck(baseCards, discardPile);
         hand = new Hand(deck);
         play = new Play();
     }
 
     public boolean playCard(int idx) {
+        /* toto ti podla mna neprejde a vyhodi ti vynimku ked budes mat malo kariet, lebo v play odstranujes kartu z 
+        idx miesta ale potom ju zase chces hned riadok pod tym v getCardFromHand. Ak som to dobre pozrela (pochopila) tak na 
+        idx uz bude ina karta, pripadne koniec pola.*/
+        
+        CardInterface card = hand.getCardFromHand(idx); //takto si ju ulozis skor nez ju v hand.play vymazes
         if (hand.play(idx)) {
-            CardInterface card = hand.getCardFromHand(idx);
+         // CardInterface card = hand.getCardFromHand(idx);
             play.putTo(card);
             card.evaluate(turnStatus);
             hand.handCards.addAll(deck.draw(card.cardType().getPlusCards()));
@@ -52,7 +58,10 @@ public class Turn {
     }
 
     public boolean buyCard(int buyDeckIdx) {
-        if (turnStatus.buys > 0 && buyDeckIdx < buyDecks.size() && buyDecks.get(buyDeckIdx).cardCount > 0 && buyDecks.get(buyDeckIdx).deckTypeCard.getCost() < turnStatus.coins) {
+        if (turnStatus.buys > 0 && buyDeckIdx < buyDecks.size() && 
+            buyDeckIdx >= 0 && buyDecks.get(buyDeckIdx).cardCount > 0 && 
+            buyDecks.get(buyDeckIdx).deckTypeCard.getCost() <= turnStatus.coins) {
+            
             turnStatus.buys--;
             buyDecks.get(buyDeckIdx).buy();
             CardInterface card = buyDecks.get(buyDeckIdx).getCardFromBuyDeck();
@@ -62,6 +71,9 @@ public class Turn {
         return false;
     }
 
+    /*toto je zajimave ako robis, si si to mohla rovno v turn statuse menit ked ich kupis. 
+    Lebo sa mi zda ze tie s ktorymi zacinas body aj tak nemaju, takze k tym "bodovym" sa inak aj tak nemas ako dostat */
+    
     public int pointsCount() {
         int points = 0;
         points += hand.getPoints() + deck.getPoints() + discardPile.getPoints() + play.getPoints();
