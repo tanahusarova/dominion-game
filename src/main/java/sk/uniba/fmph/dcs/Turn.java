@@ -62,6 +62,9 @@ public class Turn {
         return false;
     }
 
+    /* este tuto doplnim, ze v evaluate to aj tak menis. vies ze ti stacilo kuknut turn status, 
+    nie volat tuto metodu, neprechadzala by si vsetko znova */
+    
     public int pointsCount() {
         int points = 0;
         points += hand.getPoints() + deck.getPoints() + discardPile.getPoints() + play.getPoints();
